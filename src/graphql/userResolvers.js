@@ -33,10 +33,8 @@ export const RegistrationResolver = async (_parent, request) => {
     if (!isEmailExisted) {
       const userModel = new UserModel(request);
       const hasedPassword = await userModel.setPassword(request.password);
-      console.log("hasedPassword", hasedPassword);
       request.password = hasedPassword;
       const user = await userModel.save();
-      console.log(user);
       return user;
     } else {
       return {
